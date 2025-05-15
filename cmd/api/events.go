@@ -6,8 +6,8 @@ import (
 	"strconv"
 
 	"github.com/gin-gonic/gin"
+	_ "github.com/go-sql-driver/mysql" // Ganti driver SQLite dengan MySQL
 	_ "github.com/joho/godotenv/autoload"
-	_ "github.com/mattn/go-sqlite3"
 )
 
 // GetEvents returns all events
@@ -284,7 +284,6 @@ func (app *application) addAttendeeToEvent(c *gin.Context) {
 	}
 
 	c.JSON(http.StatusCreated, attendee)
-
 }
 
 // GetEventsByAttendee returns all events for a given attendee

@@ -7,8 +7,8 @@ import (
 	"rest-api-in-gin/internal/database"
 	"rest-api-in-gin/internal/env"
 
+	_ "github.com/go-sql-driver/mysql" // Ganti driver SQLite dengan MySQL
 	_ "github.com/joho/godotenv/autoload"
-	_ "github.com/mattn/go-sqlite3"
 )
 
 // @title Go Gin Rest API
@@ -26,7 +26,9 @@ type application struct {
 }
 
 func main() {
-	db, err := sql.Open("sqlite3", "./data.db")
+	// Ganti koneksi SQLite dengan koneksi ke MySQL lokal
+	// Contoh user: root, password: (kosong), db: mydb
+	db, err := sql.Open("mysql", "root:@tcp(127.0.0.1:3306)/mydb?parseTime=true")
 	if err != nil {
 		log.Fatal(err)
 	}
